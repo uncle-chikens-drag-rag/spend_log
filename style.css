@@ -1,0 +1,50 @@
+body {
+    background-color: #F8F9FA;
+    color: #202124;
+    letter-spacing: 0.015em;
+}
+
+/* CustomScrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* Table hover effect - Google Blue transparent */
+.table-row-hover:hover {
+    background-color: #e8f0fe !important;
+    /* google.blueLight */
+}
+
+/* Input file styled button */
+input[type="file"]::file-selector-button {
+    border: none;
+    background-color: #1a73e8;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    /* Pill shape */
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #174ea6;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+}
