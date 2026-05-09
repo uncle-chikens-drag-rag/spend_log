@@ -286,12 +286,17 @@ function renderTable() {
                 ? `<span class="flex-shrink-0 bg-gray-500 text-white text-[9px] sm:text-[10px] leading-none px-1.5 sm:px-2 py-0.5 rounded-full ml-1 sm:ml-1.5 font-semibold whitespace-nowrap">${visitCount}</span>`
                 : '';
 
-            // Day of week
+            // Day of week & Format Date (MM/DD)
             const DAYS_JA = ['日', '月', '火', '水', '木', '金', '土'];
             const dateObj = new Date(item.dateStr.replace(/\//g, '-'));
             let dayLabel = '';
             let dayColor = '#6b7280'; // weekday = muted gray
+            let displayDate = item.dateStr;
             if (!isNaN(dateObj.getTime())) {
+                const m = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                const d = dateObj.getDate().toString().padStart(2, '0');
+                displayDate = `${m}/${d}`;
+
                 const dow = dateObj.getDay(); // 0=Sun, 6=Sat
                 dayLabel = DAYS_JA[dow];
                 if (dow === 6) dayColor = '#3b82f6';   // Sat = blue-500
@@ -312,7 +317,7 @@ function renderTable() {
             const barHTML = `<div style="position:absolute;top:0;right:0;bottom:0;width:${barPct}%;background:${barColor};pointer-events:none;"></div>`;
 
             tr.innerHTML = `
-                <td class="px-2 py-2.5 sm:px-5 sm:py-3.5 text-gray-500 text-[10px] sm:text-xs tracking-wide" style="font-feature-settings: 'tnum';white-space:nowrap;">${escapeHTML(item.dateStr)}${dayHTML}</td>
+                <td class="px-2 py-2.5 sm:px-5 sm:py-3.5 text-gray-500 text-[10px] sm:text-xs tracking-wide" style="font-feature-settings: 'tnum';white-space:nowrap;">${escapeHTML(displayDate)}${dayHTML}</td>
                 <td class="px-2 py-2.5 sm:px-5 sm:py-3.5 cursor-pointer transition-colors" data-store-click="1" style="overflow:hidden" title="Filter by ${escapeHTML(item.store)}" onclick="filterByStore('${escapeHTML(item.store)}')">
                     <span style="display:inline-flex;align-items:center;max-width:100%;overflow:hidden;">
                         <span class="font-medium text-xs sm:text-sm text-gray-800 hover:text-google-blue transition-colors" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHTML(item.store)}</span>${badgeHTML}
